@@ -7,20 +7,6 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import './App.css';
 
-import { createTheme } from '@mui/material/styles';
-
-const theme = createTheme({
-  
-    "textField": {
-        "textColor": "#ffffff",
-        "focusColor": "#ffffff",
-        "borderColor": "#ffffff",
-        "hintColor": "#ffffff",
-        "floatingLabelColor": "#ffffff",
-        "errorColor": "#ffebee"
-    }
-
-});
 
 
 function App() {
