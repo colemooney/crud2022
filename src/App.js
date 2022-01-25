@@ -1,15 +1,20 @@
-
+import * as React from 'react';
 import CssBaseline from'@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import ResponsiveAppBar from './Components/navbar';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+import DateTimePicker from '@mui/lab/DateTimePicker';
+
 import './App.css';
 
 
 
 function App() {
+
+  
+
   return (
     <div className="App">
      <ResponsiveAppBar />
@@ -24,26 +29,37 @@ function App() {
      <Box
      sx={{
        width: "50vw",
-       height: "40vh",
+       height: "50vh",
        display: "flex",
        justifyContent: "center",
        
        border: "1px solid grey",
-       backgroundColor: 'primary.dark',
+       
        
        
      }}
      >
        <Stack component="form">
 
-       <Typography variant="h1" color="white" component="div" gutterBottom>
+       <Typography variant="h1" color="primary" component="div" gutterBottom>
         Reservation CRUD
       </Typography>
 
-      <TextField label="Outlined secondary" color="secondary"  />
+      <TextField label="Reservation First Name"   />
       <hr />
-      <TextField label="Outlined secondary" color="secondary"  />
-
+      <TextField label="Reservation Last Name"   />
+      <hr />
+      <TextField
+        id="date"
+        label="Date"
+        type="date"
+        defaultValue="2017-05-24"
+        
+        InputLabelProps={{
+          shrink: true,
+        }}
+      />
+       
        </Stack>
 </Box>
      </Box>
