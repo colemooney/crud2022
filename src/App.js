@@ -24,13 +24,7 @@ const defaultValues = {
 function App() {
   const [formValues, setFormValues] = useState(defaultValues);
 
-  const handleSliderChange = (name) => (e, value) => {
-    setFormValues({
-      ...formValues,
-      [name]: value,
-    });
-  };
-
+  
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormValues({
@@ -52,7 +46,7 @@ function App() {
           <TextField
             id="name-input"
             name="name"
-            label="Name"
+            label="Reservation Name"
             type="text"
             value={formValues.name}
             onChange={handleInputChange}
@@ -61,8 +55,8 @@ function App() {
         <Grid item>
           <TextField
             id="age-input"
-            name="age"
-            label="Age"
+            name="party"
+            label="Party Number"
             type="number"
             value={formValues.age}
             onChange={handleInputChange}
@@ -70,24 +64,24 @@ function App() {
         </Grid>
         <Grid item>
           <FormControl>
-            <FormLabel>Gender</FormLabel>
+            <FormLabel>Special Occasion</FormLabel>
             <RadioGroup
-              name="gender"
+              name="occasion"
               value={formValues.gender}
               onChange={handleInputChange}
               row
             >
               <FormControlLabel
-                key="male"
-                value="male"
+                key="birthday"
+                value="birthday"
                 control={<Radio size="small" />}
-                label="Male"
+                label="Birthday"
               />
               <FormControlLabel
-                key="female"
-                value="female"
+                key="anniversary"
+                value="anniversary"
                 control={<Radio size="small" />}
-                label="Female"
+                label="Anniversary"
               />
               <FormControlLabel
                 key="other"
@@ -99,51 +93,10 @@ function App() {
           </FormControl>
         </Grid>
         <Grid item>
-          <FormControl>
-            <Select
-              name="os"
-              value={formValues.os}
-              onChange={handleInputChange}
-            >
-              <MenuItem key="mac" value="mac">
-                Mac
-              </MenuItem>
-              <MenuItem key="windows" value="windows">
-                Windows
-              </MenuItem>
-              <MenuItem key="linux " value="linux">
-                Linux
-              </MenuItem>
-            </Select>
-          </FormControl>
+          
         </Grid>
         <Grid item>
-          <div style={{ width: "400px" }}>
-            Favorite Number
-            <Slider
-              value={formValues.favoriteNumber}
-              onChange={handleSliderChange("favoriteNumber")}
-              defaultValue={1}
-              step={1}
-              min={1}
-              max={3}
-              marks={[
-                {
-                  value: 1,
-                  label: "1",
-                },
-                {
-                  value: 2,
-                  label: "2",
-                },
-                {
-                  value: 3,
-                  label: "3",
-                },
-              ]}
-              valueLabelDisplay="off"
-            />
-          </div>
+          
         </Grid>
         <Button variant="contained" color="primary" type="submit">
           Submit
