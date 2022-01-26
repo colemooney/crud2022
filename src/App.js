@@ -1,72 +1,156 @@
-import * as React from 'react';
-import CssBaseline from'@mui/material/CssBaseline';
-import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
-import ResponsiveAppBar from './Components/navbar';
-import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
-import DateTimePicker from '@mui/lab/DateTimePicker';
-
+import React, { useState } from "react";
+import Grid from "@material-ui/core/Grid";
+import TextField from "@material-ui/core/TextField";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import FormControl from "@material-ui/core/FormControl";
+import FormLabel from "@material-ui/core/FormLabel";
+import RadioGroup from "@material-ui/core/RadioGroup";
+import Radio from "@material-ui/core/Radio";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+import Slider from "@material-ui/core/Slider";
+import Button from "@material-ui/core/Button";
 import './App.css';
 
+const defaultValues = {
+  name: "",
+  age: 0,
+  gender: "",
+  os: "",
+  favoriteNumber: 0,
+};
 
 
 function App() {
+  const [formValues, setFormValues] = useState(defaultValues);
 
-  
+  const handleSliderChange = (name) => (e, value) => {
+    setFormValues({
+      ...formValues,
+      [name]: value,
+    });
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormValues({
+      ...formValues,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(formValues);
+  };
+
 
   return (
-    <div className="App">
-     <ResponsiveAppBar />
-      <CssBaseline />
-    <div style={{ width: '100%'}} className="Main">
-      <Box
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-      }}
-      >
-     <Box
-     sx={{
-       width: "50vw",
-       height: "50vh",
-       display: "flex",
-       justifyContent: "center",
-       
-       border: "1px solid grey",
-       
-       
-       
-     }}
-     >
-       <Stack component="form">
-
-       <Typography variant="h1" color="primary" component="div" gutterBottom>
-        Reservation CRUD
-      </Typography>
-
-      <TextField label="Reservation First Name"   />
-      <hr />
-      <TextField label="Reservation Last Name"   />
-      <hr />
-      <TextField
-        id="date"
-        label="Date"
-        type="date"
-        defaultValue="2017-05-24"
-        
-        InputLabelProps={{
-          shrink: true,
-        }}
-      />
-       
-       </Stack>
-</Box>
-     </Box>
-     
-     </div>
-    </div>
+    <form onSubmit={handleSubmit}>
+      <Grid container alignItems="center" justify="center" direction="column">
+        <Grid item>
+          <TextField
+            id="name-input"
+            name="name"
+            label="Name"
+            type="text"
+            value={formValues.name}
+            onChange={handleInputChange}
+          />
+        </Grid>
+        <Grid item>
+          <TextField
+            id="age-input"
+            name="age"
+            label="Age"
+            type="number"
+            value={formValues.age}
+            onChange={handleInputChange}
+          />
+        </Grid>
+        <Grid item>
+          <FormControl>
+            <FormLabel>Gender</FormLabel>
+            <RadioGroup
+              name="gender"
+              value={formValues.gender}
+              onChange={handleInputChange}
+              row
+            >
+              <FormControlLabel
+                key="male"
+                value="male"
+                control={<Radio size="small" />}
+                label="Male"
+              />
+              <FormControlLabel
+                key="female"
+                value="female"
+                control={<Radio size="small" />}
+                label="Female"
+              />
+              <FormControlLabel
+                key="other"
+                value="other"
+                control={<Radio size="small" />}
+                label="Other"
+              />
+            </RadioGroup>
+          </FormControl>
+        </Grid>
+        <Grid item>
+          <FormControl>
+            <Select
+              name="os"
+              value={formValues.os}
+              onChange={handleInputChange}
+            >
+              <MenuItem key="mac" value="mac">
+                Mac
+              </MenuItem>
+              <MenuItem key="windows" value="windows">
+                Windows
+              </MenuItem>
+              <MenuItem key="linux " value="linux">
+                Linux
+              </MenuItem>
+            </Select>
+          </FormControl>
+        </Grid>
+        <Grid item>
+          <div style={{ width: "400px" }}>
+            Favorite Number
+            <Slider
+              value={formValues.favoriteNumber}
+              onChange={handleSliderChange("favoriteNumber")}
+              defaultValue={1}
+              step={1}
+              min={1}
+              max={3}
+              marks={[
+                {
+                  value: 1,
+                  label: "1",
+                },
+                {
+                  value: 2,
+                  label: "2",
+                },
+                {
+                  value: 3,
+                  label: "3",
+                },
+              ]}
+              valueLabelDisplay="off"
+            />
+          </div>
+        </Grid>
+        <Button variant="contained" color="primary" type="submit">
+          Submit
+        </Button>
+      </Grid>
+    </form>
   );
-}
+};
 
 export default App;
