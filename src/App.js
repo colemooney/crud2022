@@ -46,20 +46,30 @@ function App() {
   const btnstyle={margin:'8px 0'}
   return (
     <div className="App">
-      <form onSubmit={handleSubmit}>
-    <Grid container spacing={2}>
-            <Paper elevation={10} style={paperStyle}>
+      <form sx={{ p:2 }} onSubmit={handleSubmit}>
+    <Grid container spacing={3}>
+            <Paper sx={{ p:10 }} elevation={10} style={paperStyle}>
                 <Grid item align='center'>
                      
                     <h2>Reservation CRUD</h2>
                 </Grid>
-                <Grid item>
+                <Grid sx={{ p: 3 }} >
                 <TextField 
                 onChange={handleInputChange}
                 name="name"
                 label='Party Name' 
                 placeholder="Enter Party Name" 
                 fullWidth required
+                spacing={5}
+                />
+
+              <TextField 
+                onChange={handleInputChange}
+                name="email"
+                label='Email' 
+                placeholder="...@gmail.com" 
+                fullWidth required
+                sx={{ p: 2}}
                 />
 
                 <TextField 
@@ -67,7 +77,7 @@ function App() {
                 name="party"
                 label='Party Number' 
                 placeholder='How many in the party?' 
-                type='password' 
+              
                 fullWidth required
                 />
                 </Grid>

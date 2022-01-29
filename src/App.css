@@ -48,3 +48,14 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+.MuiFormControl-root {
+  border: 0;
+  margin: 0;
+  display: inline-flex;
+  padding: 10px !important;
+  position: relative;
+  min-width: 0;
+  flex-direction: column;
+  vertical-align: top;
+}
