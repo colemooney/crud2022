@@ -47,34 +47,60 @@ function App() {
   return (
     <div className="App">
       <form onSubmit={handleSubmit}>
-    <Grid>
+    <Grid container spacing={2}>
             <Paper elevation={10} style={paperStyle}>
-                <Grid align='center'>
+                <Grid item align='center'>
                      
                     <h2>Reservation CRUD</h2>
                 </Grid>
-                <TextField label='Party Name' placeholder="Enter Party Name" fullWidth required/>
-                <TextField label='Party Number' placeholder='How many in the party?' type='password' fullWidth required/>
-                <FormControlLabel
-                    control={
-                    <Checkbox
-                        name="checkedB"
-                        color="primary"
-                    />
-                    }
-                    label="Remember me"
-                 />
-                <Button type='submit' color='primary' variant="contained" style={btnstyle} fullWidth>Sign in</Button>
-                <Typography >
-                     <Link href="#" >
-                        Forgot password ?
-                </Link>
-                </Typography>
-                <Typography > Do you have an account ?
-                     <Link href="#" >
-                        Sign Up 
-                </Link>
-                </Typography>
+                <Grid item>
+                <TextField 
+                onChange={handleInputChange}
+                name="name"
+                label='Party Name' 
+                placeholder="Enter Party Name" 
+                fullWidth required
+                />
+
+                <TextField 
+                onChange={handleInputChange}
+                name="party"
+                label='Party Number' 
+                placeholder='How many in the party?' 
+                type='password' 
+                fullWidth required
+                />
+                </Grid>
+                <FormControl>
+            <FormLabel>Special Occasion</FormLabel>
+            <RadioGroup
+              name="occasion"
+              value={formValues.occasion}
+              onChange={handleInputChange}
+              row
+            >
+              <FormControlLabel
+                key="birthday"
+                value="birthday"
+                control={<Radio size="small" />}
+                label="Birthday"
+              />
+              <FormControlLabel
+                key="anniversary"
+                value="anniversary"
+                control={<Radio size="small" />}
+                label="Anniversary"
+              />
+              <FormControlLabel
+                key="other"
+                value="other"
+                control={<Radio size="small" />}
+                label="Other"
+              />
+            </RadioGroup>
+          </FormControl>
+                <Button type='submit' color='primary' variant="contained" style={btnstyle} fullWidth>Submit</Button>
+                
             </Paper>
         </Grid>
         </ form>
