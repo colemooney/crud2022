@@ -77,7 +77,7 @@ function App() {
                 name="party"
                 label='Party Number' 
                 placeholder='How many in the party?' 
-              
+                type="number"
                 fullWidth required
                 />
                 </Grid>
