@@ -10,9 +10,10 @@ import Box from "@material-ui/core/Box";
 import MenuItem from "@material-ui/core/MenuItem";
 import Slider from "@material-ui/core/Slider";
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-
+import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 import Checkbox from '@material-ui/core/Checkbox';
-
+import DateAdapter from '@mui/lab/AdapterMoment';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
 
 import './App.css';
 
@@ -20,13 +21,15 @@ const defaultValues = {
   name: "",
   party: 0,
   occasion: "",
+  email: "",
+  date: "",
   
 };
 
 
 function App() {
   const [formValues, setFormValues] = useState(defaultValues);
-
+  const [value, setValue] = React.useState(new Date('2014-08-18T21:11:54'));
   
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -34,6 +37,9 @@ function App() {
       ...formValues,
       [name]: value,
     });
+  };
+  const handleChange = (newValue) => {
+    setValue(newValue);
   };
 
   const handleSubmit = (event) => {
@@ -80,6 +86,18 @@ function App() {
                 type="number"
                 fullWidth required
                 />
+
+                <LocalizationProvider dateAdapter={DateAdapter}>
+                <DesktopDatePicker
+                name="date"
+                   label="Date"
+                   inputFormat="MM/dd/yyyy"
+                    value={value}
+                    onChange={handleChange}
+                    renderInput={(params) => <TextField {...params} />}
+               />
+ 
+               </LocalizationProvider>
                 </Grid>
                 <FormControl>
             <FormLabel>Special Occasion</FormLabel>
