@@ -10,7 +10,7 @@ import Box from "@material-ui/core/Box";
 import MenuItem from "@material-ui/core/MenuItem";
 import Slider from "@material-ui/core/Slider";
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
+import KeyboardDatePicker from '@material-ui/lab/KeyboardDatePicker';
 import Checkbox from '@material-ui/core/Checkbox';
 import DateAdapter from '@mui/lab/AdapterMoment';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
@@ -29,7 +29,7 @@ const defaultValues = {
 
 function App() {
   const [formValues, setFormValues] = useState(defaultValues);
-  const [value, setValue] = React.useState(new Date('2014-08-18T21:11:54'));
+  const [value, setValue] = React.useState(new Date());
   
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -39,6 +39,7 @@ function App() {
     });
   };
   const handleChange = (newValue) => {
+    console.log(setValue(newValue))
     setValue(newValue);
   };
 
@@ -88,13 +89,14 @@ function App() {
                 />
 
                 <LocalizationProvider dateAdapter={DateAdapter}>
-                <DesktopDatePicker
-                name="date"
-                   label="Date"
-                   inputFormat="MM/dd/yyyy"
+                <keyboardDatePicker
+                    name="date"
+                    label="Date"
+                    format="MM/dd/yyyy"
                     value={value}
                     onChange={handleChange}
-                    renderInput={(params) => <TextField {...params} />}
+                    minDate={new Date()}
+                    
                />
  
                </LocalizationProvider>
